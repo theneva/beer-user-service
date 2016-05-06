@@ -6,7 +6,8 @@
                  [compojure "1.4.0"]
                  [ring/ring-defaults "0.1.5"]
                  [ring/ring-json "0.4.0"]
-                 [ring-cors "0.1.7"]]
+                 [ring-cors "0.1.7"]
+                 [crypto-password "0.2.0"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler user-service.handler/app}
   :profiles
