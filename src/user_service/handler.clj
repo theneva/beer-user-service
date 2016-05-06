@@ -8,7 +8,10 @@
             [ring.middleware.cors :refer [wrap-cors]]
             [clojure.java.jdbc :as sql]))
 
-(def db-uri "postgresql://localhost:5432/users")
+(def db-uri (or (System/getenv "DB_URI")
+                "postgresql://localhost:5432/users"))
+
+(prn "db-uri" db-uri)
 
 (defn text-response [message status-code]
   (status (-> (response message)
