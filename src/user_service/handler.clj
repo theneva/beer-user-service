@@ -42,9 +42,11 @@
 
 (defn authenticate-user [{:keys [username password]}]
   (let [user (user-by-username username)]
-    (if (bcrypt/check password (:password user))
-      (response (dissoc user :password_hash))
-      (status (response "Wrong username or password") 401))))
+    (if (nil? user)
+      (text-response (str "No user exists with username " username) 401)
+      (if (bcrypt/check password (:password_hash user))
+        (response (dissoc user :password_hash))
+        (status (response "Wrong username or password") 401)))))
 
 (defroutes app-routes
            (GET "/" [] (home))
