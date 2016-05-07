@@ -11,8 +11,6 @@
 (def db-uri (or (System/getenv "DB_URI")
                 "postgresql://localhost:5432/users"))
 
-(prn "db-uri" db-uri)
-
 (defn text-response [message status-code]
   (status (-> (response message)
               (content-type "text/plain"))
